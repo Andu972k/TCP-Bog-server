@@ -108,6 +108,10 @@ namespace TCP_Bog_server
                 Bog tempBog = _bøger.Find(b => b.Isbn13 == requestSecondLine);
                 return JsonConvert.SerializeObject(tempBog);
             }
+            else if (requestSecondLine != null && requestSecondLine.Length == 13 && !_bøger.Exists(b => b.Isbn13 == requestSecondLine))
+            {
+                return "Bogen findes ikke";
+            }
 
             return "Forkert Forespoergsel\nRigtigt format:\nHent\nIsbn13-nummer(det skal vaere paa 13 tegn)";
         }
